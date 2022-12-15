@@ -1,8 +1,6 @@
-using Microsoft.EntityFrameworkCore;
 using Discord;
 using Discord.Interactions;
 using Discord.WebSocket;
-using WeCantSpell.Hunspell;
 
 namespace WintBot;
 
@@ -51,20 +49,16 @@ public class NumberGameModule : InteractionModuleBase<SocketInteractionContext>
             await RespondAsync("This game is not for you. Try creating a game yourself...", ephemeral: true);
         } else if (game != null)
         {
-            // if (Context.User.Id == Convert.ToUInt64(user))
-            // {
-            //     await RespondAsync("Wait for the opponent to accept the challenge.", ephemeral: true);
-            // } else 
-            // {
-            //     var userObject = await Context.Channel.GetUserAsync(Convert.ToUInt64(user));
-            //     var btn = new ComponentBuilder()
-            //             .WithButton("Click Here", $"cmd_open_num_modal_{user}_{opponent}", ButtonStyle.Primary);
-            //     await RespondAsync($"{userObject.Mention}, click here to enter your number...", components: btn.Build(), ephemeral: true);
-            // }
-            var userObject = await Context.Channel.GetUserAsync(Convert.ToUInt64(user));
-            var btn = new ComponentBuilder()
+            if (Context.User.Id == Convert.ToUInt64(user))
+            {
+                await RespondAsync("Wait for the opponent to accept the challenge.", ephemeral: true);
+            } else 
+            {
+                var userObject = await Context.Channel.GetUserAsync(Convert.ToUInt64(user));
+                var btn = new ComponentBuilder()
                         .WithButton("Click Here", $"cmd_open_num_modal_{user}_{opponent}", ButtonStyle.Primary);
-            await RespondAsync($"{userObject.Mention}, click here to enter your number...", components: btn.Build(), ephemeral: true);
+                await RespondAsync($"{userObject.Mention}, click here to enter your number...", components: btn.Build(), ephemeral: true);
+            }
         }
     }
 
@@ -75,22 +69,80 @@ public class NumberGameModule : InteractionModuleBase<SocketInteractionContext>
     }
 
     [ModalInteraction("num_modal_*_*")]
-    public async Task HandleModalInteraction(NumberModal modal, string user, string opponent)
+    public async Task HandleModalInteraction(string user, string opponent, NumberModal modal)
     {
-        await RespondAsync($"The entered number is {modal.enteredNumber}", ephemeral: true);
+        Random a = new Random();
+        List<int> randomList = new List<int>();
+        int MyNumber = modal.enteredNumber;
+        int repeat = 0;
+
+        void NewNumber()
+        {
+            repeat = a.Next(0, 10);
+            if (!randomList.Contains(repeat) && !randomList.Contains(MyNumber))
+                    randomList.Add(repeat);
+        }
+
+        for (int i = 0; randomList.Count <=4 ; i++)
+        {
+            NewNumber();
+        }
+
+        int index = a.Next(0, 4);
+
+        randomList[index] = MyNumber;
+
+        var btns = new ComponentBuilder();
+
+        foreach (int i in randomList)
+        {
+            btns.WithButton(i.ToString(), $"selection_{i}_{MyNumber}_{user}_{opponent}");
+        }
+
+        var opponentObject = await Context.Channel.GetUserAsync(Convert.ToUInt64(opponent));
+
+        var eb = new EmbedBuilder()
+                     .WithDescription($"{opponentObject.Mention}, Guess the number now.,");
+
+        await RespondAsync(embed: eb.Build(), components: btns.Build());
     }
 
-    [SlashCommand("check", "Check is the word is valid english")]
-    public async Task Handle(string word)
+    [ComponentInteraction("selection_*_*_*_*")]
+    public async Task HandleSelectionCommand(string selected, string answer, string user, string opponent)
     {
-        var dictionary = WordList.CreateFromFiles(@"en_US.dic");
-        bool Ok = dictionary.Check(word);
-        if (Ok)
+        if (Context.User.Id == Convert.ToUInt64(opponent))
         {
-            await RespondAsync("Valid", ephemeral: true);
+            if (selected == answer)
+            {
+                var useObj = await Context.Channel.GetUserAsync(Convert.ToUInt64(user));
+                var opponenet = await Context.Channel.GetUserAsync(Convert.ToUInt64(opponent));
+                List<EmbedFieldBuilder> fields = new ()
+                {
+                    new EmbedFieldBuilder()
+                        .WithName("Challenger")
+                        .WithValue($"{useObj.Mention}"),
+                    new EmbedFieldBuilder()
+                        .WithName("Winner")
+                        .WithValue($"{opponenet.Mention}")
+                };
+                var eb = new EmbedBuilder()
+                            .WithTitle("🥇 Hooray!, You Guessed..!")
+                            .WithDescription("**200** Snow Coins has been deposited to your wallet")
+                            .WithFields(fields)
+                            .WithColor(Color.Green);
+
+                await RespondAsync(embed: eb.Build());
+            } else 
+            {
+                var ebn = new EmbedBuilder()
+                             .WithTitle("Ouch...")
+                             .WithDescription("You made it wrong..")
+                             .WithColor(Color.Red);
+                await RespondAsync(embed: ebn.Build());
+            }
         } else 
         {
-            await RespondAsync("not valid", ephemeral: true);
+            await RespondAsync("This game is not for you, try creating a new one...", ephemeral: true);
         }
     }
 }

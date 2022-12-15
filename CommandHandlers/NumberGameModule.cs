@@ -26,15 +26,24 @@ public class NumberGameModule : InteractionModuleBase<SocketInteractionContext>
                      .WithDescription($"{Context.User.Mention} challenged you to the Number game.");
         var buttons = new ComponentBuilder()
                           .WithButton("Agree", $"cmd_agree_{opponent.Id}_{Context.User.Id}", ButtonStyle.Success)
-                          .WithButton("Decline", "cmd_decline", ButtonStyle.Danger);
+                          .WithButton("Decline", $"cmd_decline_{Context.User.Id}_{opponent.Id}", ButtonStyle.Danger);
         await RespondAsync($"||{opponent.Mention}||", embed: eb.Build(), components: buttons.Build());
     }
 
-    [ComponentInteraction("cmd_decline")]
-    public async Task HandleDeclineCommand()
+    [ComponentInteraction("cmd_decline_*_*")]
+    public async Task HandleDeclineCommand(string user, string opponent)
     {
-        var message = (SocketMessageComponent)Context.Interaction;
-        await message.Message.DeleteAsync();
+        if (Context.User.Id == Convert.ToUInt64(user))
+        {
+            await RespondAsync("That should be done by the opponent...", ephemeral: true);
+        } else if (Context.User.Id == Convert.ToUInt64(opponent))
+        {
+            var message = (SocketMessageComponent)Context.Interaction;
+            await message.Message.DeleteAsync();
+        } else 
+        {
+            await RespondAsync("This game is not for you, try creating a new game...", ephemeral: true);
+        }
     }
 
     [ComponentInteraction("cmd_agree_*_*")]
@@ -57,7 +66,7 @@ public class NumberGameModule : InteractionModuleBase<SocketInteractionContext>
                 var userObject = await Context.Channel.GetUserAsync(Convert.ToUInt64(user));
                 var btn = new ComponentBuilder()
                         .WithButton("Click Here", $"cmd_open_num_modal_{user}_{opponent}", ButtonStyle.Primary);
-                await RespondAsync($"{userObject.Mention}, click here to enter your number...", components: btn.Build(), ephemeral: true);
+                await RespondAsync($"{userObject.Mention}, click here to enter your number...", components: btn.Build());
             }
         }
     }
@@ -74,11 +83,12 @@ public class NumberGameModule : InteractionModuleBase<SocketInteractionContext>
         Random a = new Random();
         List<int> randomList = new List<int>();
         int MyNumber = modal.enteredNumber;
+        Console.WriteLine($"Rat has entered {modal.enteredNumber}");
         int repeat = 0;
 
         void NewNumber()
         {
-            repeat = a.Next(0, 10);
+            repeat = a.Next(0, 99);
             if (!randomList.Contains(repeat) && !randomList.Contains(MyNumber))
                     randomList.Add(repeat);
         }
@@ -112,18 +122,18 @@ public class NumberGameModule : InteractionModuleBase<SocketInteractionContext>
     {
         if (Context.User.Id == Convert.ToUInt64(opponent))
         {
+            var userObj = await Context.Channel.GetUserAsync(Convert.ToUInt64(user));
+            var opponentObj = await Context.Channel.GetUserAsync(Convert.ToUInt64(opponent));
             if (selected == answer)
             {
-                var useObj = await Context.Channel.GetUserAsync(Convert.ToUInt64(user));
-                var opponenet = await Context.Channel.GetUserAsync(Convert.ToUInt64(opponent));
                 List<EmbedFieldBuilder> fields = new ()
                 {
                     new EmbedFieldBuilder()
                         .WithName("Challenger")
-                        .WithValue($"{useObj.Mention}"),
+                        .WithValue($"{userObj.Mention}"),
                     new EmbedFieldBuilder()
                         .WithName("Winner")
-                        .WithValue($"{opponenet.Mention}")
+                        .WithValue($"{opponentObj.Mention}")
                 };
                 var eb = new EmbedBuilder()
                             .WithTitle("🥇 Hooray!, You Guessed..!")
@@ -136,7 +146,7 @@ public class NumberGameModule : InteractionModuleBase<SocketInteractionContext>
             {
                 var ebn = new EmbedBuilder()
                              .WithTitle("Ouch...")
-                             .WithDescription("You made it wrong..")
+                             .WithDescription($"You got it wrong. {userObj.Mention} chose **{answer}**.")
                              .WithColor(Color.Red);
                 await RespondAsync(embed: ebn.Build());
             }
@@ -152,6 +162,6 @@ public class NumberModal : IModal
     public string Title => "Challenge";
 
     [InputLabel("Enter a number for an opponenet to guess...")]
-    [ModalTextInput("num", TextInputStyle.Short, maxLength: 1)]
+    [ModalTextInput("num", TextInputStyle.Short, maxLength: 2)]
     public int enteredNumber { get; set; }
 }

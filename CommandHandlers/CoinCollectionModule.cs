@@ -26,7 +26,7 @@ public class CoinCollectionModule: InteractionModuleBase<SocketInteractionContex
         DateTime currTime = DateTime.Now;
         if (user == null)
         {
-            DateTime changedDate = currTime.AddMinutes(1.0);
+            DateTime changedDate = currTime.AddHours(3.0);
             _db.Add(new User() {UserId = Context.User.Id, coins = 200, NextClaimTime = changedDate});
             await _db.SaveChangesAsync();
             var embed = new EmbedBuilder()

@@ -140,3 +140,4 @@ Y:\SnowCord\WintBot\obj\Debug\net6.0\refint\WintBot.dll
 Y:\SnowCord\WintBot\obj\Debug\net6.0\WintBot.pdb
 Y:\SnowCord\WintBot\obj\Debug\net6.0\WintBot.genruntimeconfig.cache
 Y:\SnowCord\WintBot\obj\Debug\net6.0\ref\WintBot.dll
+Y:\SnowCord\WintBot\bin\Debug\net6.0\WeCantSpell.Hunspell.dll

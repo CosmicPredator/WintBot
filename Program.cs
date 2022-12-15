@@ -18,7 +18,10 @@ public class Program
 
         DiscordSocketConfig config = new DiscordSocketConfig()
         {
-            GatewayIntents = GatewayIntents.AllUnprivileged
+            GatewayIntents = GatewayIntents.AllUnprivileged,
+            LogGatewayIntentWarnings = false,
+            AlwaysDownloadUsers = true,
+            LogLevel = LogSeverity.Info
         };
 
         var collection = new ServiceCollection()
@@ -57,7 +60,7 @@ public class Program
             Console.WriteLine("Polling...");
             await sCommands.RegisterCommandsToGuildAsync(1041363391790465075);
         };
-
+        
         await client.LoginAsync(TokenType.Bot, Credentials.Token);
         await client.StartAsync();
 

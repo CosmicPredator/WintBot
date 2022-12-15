@@ -68,6 +68,10 @@
             "Microsoft.Extensions.DependencyInjection": {
               "target": "Package",
               "version": "[7.0.0, )"
+            },
+            "WeCantSpell.Hunspell": {
+              "target": "Package",
+              "version": "[4.0.0, )"
             }
           },
           "imports": [

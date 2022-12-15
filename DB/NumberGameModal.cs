@@ -3,8 +3,8 @@ namespace WintBot;
 public class NumberGame
 {
     public ulong Id { get; set; }
-    public int? SubmittedNumber { get; set; }
-    public int? SelfUserId { get; set; }
-    public int? OpponentUserId { get; set; }
-    public int? GuildId { get; set; }
+    public double? SubmittedNumber { get; set; }
+    public ulong SelfUserId { get; set; }
+    public ulong OpponentUserId { get; set; }
+    public ulong GuildId { get; set; }
 }

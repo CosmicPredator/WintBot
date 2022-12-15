@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "BsgRUBXR+IogK2RKAO9wxF0N4hGUU9VzS/O0tndXMAdYqdY37HiMMBO3agcVf77zHScExfIhPo8VI0baJMwhPw==",
+  "dgSpecHash": "lYsNv1LOIVsgvhYhtqmxtAwErCW5Lfk8tcmpzOnnAu6nfIjTAs0D7IL/Nd/jr3CxEiEiMChR0Y8AEPn7Ut2m1A==",
   "success": true,
   "projectFilePath": "Y:\\SnowCord\\WintBot\\WintBot.csproj",
   "expectedPackageFiles": [
@@ -43,7 +43,8 @@
     "C:\\Users\\baran\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
     "C:\\Users\\baran\\.nuget\\packages\\system.text.encodings.web\\7.0.0\\system.text.encodings.web.7.0.0.nupkg.sha512",
     "C:\\Users\\baran\\.nuget\\packages\\system.text.json\\7.0.0\\system.text.json.7.0.0.nupkg.sha512",
-    "C:\\Users\\baran\\.nuget\\packages\\system.valuetuple\\4.5.0\\system.valuetuple.4.5.0.nupkg.sha512"
+    "C:\\Users\\baran\\.nuget\\packages\\system.valuetuple\\4.5.0\\system.valuetuple.4.5.0.nupkg.sha512",
+    "C:\\Users\\baran\\.nuget\\packages\\wecantspell.hunspell\\4.0.0\\wecantspell.hunspell.4.0.0.nupkg.sha512"
   ],
   "logs": []
 }

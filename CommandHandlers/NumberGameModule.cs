@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Discord;
 using Discord.Interactions;
 using Discord.WebSocket;
+using WeCantSpell.Hunspell;
 
 namespace WintBot;
 
@@ -16,10 +17,12 @@ public class NumberGameModule : InteractionModuleBase<SocketInteractionContext>
     {
         NumberGame newGame = new NumberGame()
         {
-            GuildId = (int)Context.Guild.Id,
-            SelfUserId = (int)Context.User.Id,
-            OpponentUserId = (int)opponent.Id
+            GuildId = Context.Guild.Id,
+            SelfUserId = Context.User.Id,
+            OpponentUserId = opponent.Id
         };
+        _db.NumberGameList.Add(newGame);
+        await _db.SaveChangesAsync();
         var eb = new EmbedBuilder()
                      .WithTitle("New Challenge")
                      .WithDescription($"{Context.User.Mention} challenged you to the Number game.");
@@ -36,37 +39,59 @@ public class NumberGameModule : InteractionModuleBase<SocketInteractionContext>
         await message.Message.DeleteAsync();
     }
 
-    [ComponentInteraction("cmd_agree_*")]
+    [ComponentInteraction("cmd_agree_*_*")]
     public async Task HandleAgreeCommand(string opponent, string user)
     {
         NumberGame? game = _db.NumberGameList.Where(
-            x => x.SelfUserId == Convert.ToInt32(user) && 
-                    x.OpponentUserId == Convert.ToInt32(opponent)
+            x => (double)x.SelfUserId! == Convert.ToDouble(user) && 
+                    (double)x.OpponentUserId! == Convert.ToDouble(opponent)
         ).FirstOrDefault();
-
         if (game == null)
         {
-            await RespondAsync("This game is not for you. Try creating a game yourself...");
+            await RespondAsync("This game is not for you. Try creating a game yourself...", ephemeral: true);
         } else if (game != null)
         {
-            
+            // if (Context.User.Id == Convert.ToUInt64(user))
+            // {
+            //     await RespondAsync("Wait for the opponent to accept the challenge.", ephemeral: true);
+            // } else 
+            // {
+            //     var userObject = await Context.Channel.GetUserAsync(Convert.ToUInt64(user));
+            //     var btn = new ComponentBuilder()
+            //             .WithButton("Click Here", $"cmd_open_num_modal_{user}_{opponent}", ButtonStyle.Primary);
+            //     await RespondAsync($"{userObject.Mention}, click here to enter your number...", components: btn.Build(), ephemeral: true);
+            // }
+            var userObject = await Context.Channel.GetUserAsync(Convert.ToUInt64(user));
+            var btn = new ComponentBuilder()
+                        .WithButton("Click Here", $"cmd_open_num_modal_{user}_{opponent}", ButtonStyle.Primary);
+            await RespondAsync($"{userObject.Mention}, click here to enter your number...", components: btn.Build(), ephemeral: true);
         }
-
-        var btn = new ComponentBuilder()
-                      .WithButton("Click Here", "cmd_open_num_modal", ButtonStyle.Primary);
-        await RespondAsync($"Click here to enter your number...", components: btn.Build(), ephemeral: true);
     }
 
-    [ComponentInteraction("cmd_open_num_modal")]
-    public async Task HandleModalOpenCommand()
+    [ComponentInteraction("cmd_open_num_modal_*_*")]
+    public async Task HandleModalOpenCommand(string user, string opponent)
     {
-        await RespondWithModalAsync<NumberModal>("num_modal");
+        await RespondWithModalAsync<NumberModal>($"num_modal_{user}_{opponent}");
     }
 
-    [ModalInteraction("num_modal")]
-    public async Task HandleModalInteraction(NumberModal modal)
+    [ModalInteraction("num_modal_*_*")]
+    public async Task HandleModalInteraction(NumberModal modal, string user, string opponent)
     {
         await RespondAsync($"The entered number is {modal.enteredNumber}", ephemeral: true);
+    }
+
+    [SlashCommand("check", "Check is the word is valid english")]
+    public async Task Handle(string word)
+    {
+        var dictionary = WordList.CreateFromFiles(@"en_US.dic");
+        bool Ok = dictionary.Check(word);
+        if (Ok)
+        {
+            await RespondAsync("Valid", ephemeral: true);
+        } else 
+        {
+            await RespondAsync("not valid", ephemeral: true);
+        }
     }
 }
 

@@ -745,6 +745,19 @@
         "runtime": {
           "lib/netcoreapp2.0/_._": {}
         }
+      },
+      "WeCantSpell.Hunspell/4.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/WeCantSpell.Hunspell.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/WeCantSpell.Hunspell.dll": {
+            "related": ".xml"
+          }
+        }
       }
     }
   },
@@ -1761,6 +1774,24 @@
         "useSharedDesignerContext.txt",
         "version.txt"
       ]
+    },
+    "WeCantSpell.Hunspell/4.0.0": {
+      "sha512": "E4A73NTAk25LSmxage9AdT4EE+4KSGFCpjGog2nucPjA+pcgdXmktQjIp+t8dQWExh2eHJbzNJYDt/A0A1Dwbw==",
+      "type": "package",
+      "path": "wecantspell.hunspell/4.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "icon.png",
+        "lib/net6.0/WeCantSpell.Hunspell.dll",
+        "lib/net6.0/WeCantSpell.Hunspell.xml",
+        "lib/netstandard2.0/WeCantSpell.Hunspell.dll",
+        "lib/netstandard2.0/WeCantSpell.Hunspell.xml",
+        "license.txt",
+        "readme.md",
+        "wecantspell.hunspell.4.0.0.nupkg.sha512",
+        "wecantspell.hunspell.nuspec"
+      ]
     }
   },
   "projectFileDependencyGroups": {
@@ -1770,7 +1801,8 @@
       "Microsoft.EntityFrameworkCore.InMemory >= 7.0.0",
       "Microsoft.EntityFrameworkCore.SQlite >= 7.0.0",
       "Microsoft.Extensions.Configuration >= 7.0.0",
-      "Microsoft.Extensions.DependencyInjection >= 7.0.0"
+      "Microsoft.Extensions.DependencyInjection >= 7.0.0",
+      "WeCantSpell.Hunspell >= 4.0.0"
     ]
   },
   "packageFolders": {
@@ -1841,6 +1873,10 @@
           "Microsoft.Extensions.DependencyInjection": {
             "target": "Package",
             "version": "[7.0.0, )"
+          },
+          "WeCantSpell.Hunspell": {
+            "target": "Package",
+            "version": "[4.0.0, )"
           }
         },
         "imports": [

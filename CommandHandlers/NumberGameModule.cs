@@ -74,7 +74,13 @@ public class NumberGameModule : InteractionModuleBase<SocketInteractionContext>
     [ComponentInteraction("cmd_open_num_modal_*_*")]
     public async Task HandleModalOpenCommand(string user, string opponent)
     {
-        await RespondWithModalAsync<NumberModal>($"num_modal_{user}_{opponent}");
+        if (Context.User.Id == Convert.ToUInt64(opponent))
+        {
+            await RespondWithModalAsync<NumberModal>($"num_modal_{user}_{opponent}");
+        } else 
+        {
+            await RespondAsync("This is not for you...", ephemeral: true);
+        }
     }
 
     [ModalInteraction("num_modal_*_*")]

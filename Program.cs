@@ -57,7 +57,6 @@ public class Program
 
         client.Ready += async () =>
         {
-            Console.WriteLine("Polling...");
             await sCommands.RegisterCommandsToGuildAsync(1041363391790465075);
         };
         

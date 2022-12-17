@@ -7,4 +7,5 @@ public class NumberGame
     public ulong SelfUserId { get; set; }
     public ulong OpponentUserId { get; set; }
     public ulong GuildId { get; set; }
+    public int betAmount { get; set; }
 }

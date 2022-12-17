@@ -16,7 +16,8 @@ public class CoinCollectionModule: InteractionModuleBase<SocketInteractionContex
     [SlashCommand("ping", "Pings the bot")]
     public async Task HandlePingCommand()
     {
-        await RespondAsync("Pong `InteractionModuleBase` working...");
+        int ping = Context.Client.Latency;
+        await RespondAsync($"Pong, `{ping.ToString()}ms`");
     }
 
     [SlashCommand("daily", "Redeem your daily christmas gif coins...")]
@@ -90,43 +91,4 @@ public class CoinCollectionModule: InteractionModuleBase<SocketInteractionContex
         }
 
     }
-
-    [SlashCommand("guess", "Generate a random number to guess")]
-    public async Task HandleGuessCommand()
-    {
-        var button = new ComponentBuilder()
-                            .WithButton("Yeah", "game_start")
-                            .WithButton("Nah", "nah_button");
-        await RespondAsync("Are you sure to start a Game ?", components: button.Build());
-    }
-
-    [ComponentInteraction("game_start")]
-    public async Task HandleButton()
-    {
-        await RespondWithModalAsync<GetUserNumberInputModal>("demo_modal");
-    }
-
-    [ComponentInteraction("nah_button")]
-    public async Task HandleNah()
-    {
-        var message = (SocketMessageComponent)Context.Interaction;
-        await message.Message.DeleteAsync();
-    }
-
-
-    [ModalInteraction("demo_modal")]
-    public async Task HandleModal(GetUserNumberInputModal modal)
-    {
-        _db.UserList.Add(new User() {Id = Context.User.Id, selectedNumber = modal.number});
-        await RespondAsync($"The Selected Number is {modal.number}");
-    }
-}
-
-public class GetUserNumberInputModal : IModal
-{
-    public string Title => "Guess a number!";
-
-    [InputLabel("Hmm, A single digit number ?")]
-    [ModalTextInput("num_input", TextInputStyle.Short, "Enter a random number...", maxLength: 1)]
-    public int? number {get; set;}
 }

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "qZcpj+b80YjQf9gHf9aUGKJC6R6qVNTS+p5mzWMpl8dsnr+sC1/Y9S+YHKkuAce8wXQ9EB7BtEixd3smpGjHYw==",
+  "dgSpecHash": "4llBtf2lbM3DkAwcL1oH0gv7Idsk1aHetPxdKaDOLkVD6H11Bc6yau40WMp02bBNguNIQPsA01Bp+0IqXwzYLA==",
   "success": true,
   "projectFilePath": "Y:\\SnowCord\\WintBot\\WintBot.csproj",
   "expectedPackageFiles": [
@@ -17,7 +17,7 @@
     "C:\\Users\\baran\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\7.0.1\\microsoft.entityframeworkcore.abstractions.7.0.1.nupkg.sha512",
     "C:\\Users\\baran\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\7.0.1\\microsoft.entityframeworkcore.analyzers.7.0.1.nupkg.sha512",
     "C:\\Users\\baran\\.nuget\\packages\\microsoft.entityframeworkcore.inmemory\\7.0.0\\microsoft.entityframeworkcore.inmemory.7.0.0.nupkg.sha512",
-    "C:\\Users\\baran\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\7.0.0\\microsoft.entityframeworkcore.relational.7.0.0.nupkg.sha512",
+    "C:\\Users\\baran\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\7.0.1\\microsoft.entityframeworkcore.relational.7.0.1.nupkg.sha512",
     "C:\\Users\\baran\\.nuget\\packages\\microsoft.entityframeworkcore.sqlite\\7.0.0\\microsoft.entityframeworkcore.sqlite.7.0.0.nupkg.sha512",
     "C:\\Users\\baran\\.nuget\\packages\\microsoft.entityframeworkcore.sqlite.core\\7.0.0\\microsoft.entityframeworkcore.sqlite.core.7.0.0.nupkg.sha512",
     "C:\\Users\\baran\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\7.0.0\\microsoft.extensions.caching.abstractions.7.0.0.nupkg.sha512",
@@ -32,6 +32,8 @@
     "C:\\Users\\baran\\.nuget\\packages\\microsoft.extensions.options\\7.0.0\\microsoft.extensions.options.7.0.0.nupkg.sha512",
     "C:\\Users\\baran\\.nuget\\packages\\microsoft.extensions.primitives\\7.0.0\\microsoft.extensions.primitives.7.0.0.nupkg.sha512",
     "C:\\Users\\baran\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
+    "C:\\Users\\baran\\.nuget\\packages\\npgsql\\7.0.1\\npgsql.7.0.1.nupkg.sha512",
+    "C:\\Users\\baran\\.nuget\\packages\\npgsql.entityframeworkcore.postgresql\\7.0.1\\npgsql.entityframeworkcore.postgresql.7.0.1.nupkg.sha512",
     "C:\\Users\\baran\\.nuget\\packages\\sqlitepclraw.bundle_e_sqlite3\\2.1.2\\sqlitepclraw.bundle_e_sqlite3.2.1.2.nupkg.sha512",
     "C:\\Users\\baran\\.nuget\\packages\\sqlitepclraw.core\\2.1.2\\sqlitepclraw.core.2.1.2.nupkg.sha512",
     "C:\\Users\\baran\\.nuget\\packages\\sqlitepclraw.lib.e_sqlite3\\2.1.2\\sqlitepclraw.lib.e_sqlite3.2.1.2.nupkg.sha512",

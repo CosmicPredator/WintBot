@@ -69,6 +69,10 @@
               "target": "Package",
               "version": "[7.0.0, )"
             },
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
+              "target": "Package",
+              "version": "[7.0.1, )"
+            },
             "WeCantSpell.Hunspell": {
               "target": "Package",
               "version": "[4.0.0, )"

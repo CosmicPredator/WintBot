@@ -25,12 +25,11 @@ public class Program
             LogLevel = LogSeverity.Info
         };
 
+        string connUrl = Environment.GetEnvironmentVariable("DB_URL");
+
         var collection = new ServiceCollection()
                                 .AddDbContext<UserDbContext>(
-                                    x => x.UseNpgsql(
-                                        $"{Environment.GetEnvironmentVariable("DB_URL")}"
-                                    )
-                                )
+                                    x => x.UseNpgsql(connUrl))
                                 .AddSingleton(config)
                                 .AddSingleton<DiscordSocketClient>()
                                 .AddSingleton(x => new InteractionService(x.GetRequiredService<DiscordSocketClient>()))

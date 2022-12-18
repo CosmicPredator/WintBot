@@ -82,10 +82,8 @@ Y:\SnowCord\WintBot\bin\Debug\net6.0\Discord.Net.Webhook.dll
 Y:\SnowCord\WintBot\bin\Debug\net6.0\Discord.Net.WebSocket.dll
 Y:\SnowCord\WintBot\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
 Y:\SnowCord\WintBot\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
-Y:\SnowCord\WintBot\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.dll
 Y:\SnowCord\WintBot\bin\Debug\net6.0\Microsoft.Extensions.Caching.Abstractions.dll
 Y:\SnowCord\WintBot\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll
-Y:\SnowCord\WintBot\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Abstractions.dll
 Y:\SnowCord\WintBot\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.dll
 Y:\SnowCord\WintBot\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
 Y:\SnowCord\WintBot\bin\Debug\net6.0\Microsoft.Extensions.Logging.dll
@@ -108,6 +106,4 @@ Y:\SnowCord\WintBot\obj\Debug\net6.0\WintBot.pdb
 Y:\SnowCord\WintBot\obj\Debug\net6.0\WintBot.genruntimeconfig.cache
 Y:\SnowCord\WintBot\obj\Debug\net6.0\ref\WintBot.dll
 Y:\SnowCord\WintBot\bin\Debug\net6.0\WeCantSpell.Hunspell.dll
-Y:\SnowCord\WintBot\bin\Debug\net6.0\MySqlConnector.dll
-Y:\SnowCord\WintBot\bin\Debug\net6.0\Pomelo.EntityFrameworkCore.MySql.dll
 Y:\SnowCord\WintBot\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.InMemory.dll

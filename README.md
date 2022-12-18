@@ -1,2 +1,3 @@
 # WintBot
+
 A Bot made for SnowCodes 2022 Competition...

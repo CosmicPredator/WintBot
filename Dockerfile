@@ -4,9 +4,9 @@ WORKDIR /App
 
 COPY . ./
 
-COPY ["en_US.aff", "/App"]
+COPY en_US.aff ./
 
-COPY ["en_US.dic", "/App"]
+COPY en_US.dic ./
 
 RUN dotnet restore
 

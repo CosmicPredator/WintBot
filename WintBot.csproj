@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -11,9 +11,6 @@
     <PackageReference Include="Discord.Net" Version="3.8.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="7.0.1" />
     <PackageReference Include="WeCantSpell.Hunspell" Version="4.0.0" />
-    <Content Include="/assets/*">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
 
   <ItemGroup>
@@ -22,12 +19,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="en_US.aff">
+    <Content Include="en_US.aff">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="en_US.dic">
+    </Content>
+    <Content Include="en_US.dic">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
+    </Content>
   </ItemGroup>
 
 </Project>

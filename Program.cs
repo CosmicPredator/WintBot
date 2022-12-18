@@ -86,7 +86,7 @@ public class Program
         var guildExists = _db.WordGameList.Where(
             x => x.GuildId == user.Guild.Id
         ).FirstOrDefault();
-        var dictionary = WordList.CreateFromFiles(@"en_US.dic");
+        var dictionary = WordList.CreateFromFiles(@"App/en_US.dic", @"App/en_US.aff");
         if (guildExists != null)
         {
             if (message.Channel.Id == guildExists.Channel)

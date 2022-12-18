@@ -4,10 +4,6 @@ WORKDIR /App
 
 COPY . ./
 
-COPY en_US.aff ./
-
-COPY en_US.dic ./
-
 RUN dotnet restore
 
 RUN dotnet publish -c Release -o out

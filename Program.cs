@@ -59,6 +59,7 @@ public class Program
         client.Ready += async () =>
         {
             await sCommands.RegisterCommandsGloballyAsync();
+            Console.WriteLine(System.Environment.CurrentDirectory.ToString());
         };
 
         client.MessageReceived += HandleWordAsync;

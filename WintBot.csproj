@@ -16,4 +16,18 @@
     </Content>
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="en_US.aff" />
+    <None Remove="en_US.dic" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="en_US.aff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="en_US.dic">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
 </Project>

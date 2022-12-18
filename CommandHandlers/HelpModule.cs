@@ -11,7 +11,12 @@ public class HelpCommandsClass: InteractionModuleBase<SocketInteractionContext>
         general,
         daily,
         mywallet,
-        challenge
+        challenge,
+        word_guess_score,
+        word_guess_buy_penalties,
+        word_guess_register,
+        word_guess_reset_scores,
+        word_guess_instructions
     }
 
     [SlashCommand("help", "Get to know about the bot.")]
@@ -30,6 +35,21 @@ public class HelpCommandsClass: InteractionModuleBase<SocketInteractionContext>
                 break;
             case Choices.general:
                 await RespondAsync(embed: generalEmbed.Build(), ephemeral: true);
+                break;
+            case Choices.word_guess_score:
+                await RespondAsync(embed: wordGuessScoreEmbed.Build(), ephemeral: true);
+                break;
+            case Choices.word_guess_reset_scores:
+                await RespondAsync(embed: wordGuessResetEmbed.Build(), ephemeral: true);
+                break;
+            case Choices.word_guess_register:
+                await RespondAsync(embed: wordGuessRegisterEmbed.Build(), ephemeral: true);
+                break;
+            case Choices.word_guess_buy_penalties:
+                await RespondAsync(embed: wordGuessBuyEmbed.Build(), ephemeral: true);
+                break;
+            case Choices.word_guess_instructions:
+                await RespondAsync(embed: wordInstructionsyEmbed.Build(), ephemeral: true);
                 break;
         }
     }
@@ -104,4 +124,55 @@ One cannot start a game with insufficient Snow Coins.
 
 **Commands**
 `/mywallet <opponent> <bet>`");
+
+    private EmbedBuilder wordGuessScoreEmbed = new EmbedBuilder()
+                    .WithTitle("The /word-guess score Command.")
+                    .WithImageUrl("https://i.imgur.com/ZS6LQps.png")
+                    .WithThumbnailUrl("https://i.imgur.com/Wu42LVx.gif")
+                    .WithDescription(
+                        @"This command is used to get the scores of the Santa Word Guess game.
+                        
+**Commands**
+`/word-guess score`");
+
+    private EmbedBuilder wordGuessResetEmbed = new EmbedBuilder()
+                    .WithTitle("The /word-guess score Command.")
+                    .WithImageUrl("https://i.imgur.com/ZS6LQps.png")
+                    .WithThumbnailUrl("https://i.imgur.com/Wu42LVx.gif")
+                    .WithDescription(
+                        @"This command is used to reset the scores of the Santa Word Guess game.
+
+**Commands**
+`/word-guess reset-score`");
+
+    private EmbedBuilder wordGuessRegisterEmbed = new EmbedBuilder()
+                    .WithTitle("The /word-guess score Command.")
+                    .WithImageUrl("https://i.imgur.com/ZS6LQps.png")
+                    .WithThumbnailUrl("https://i.imgur.com/Wu42LVx.gif")
+                    .WithDescription(
+
+                        @"This command is used to register a specific channel for Santa Word Guess game.
+
+**Commands**
+`/word-guess register <channel>`");
+
+    private EmbedBuilder wordGuessBuyEmbed = new EmbedBuilder()
+                    .WithTitle("The /word-guess score Command.")
+                    .WithImageUrl("https://i.imgur.com/ZS6LQps.png")
+                    .WithThumbnailUrl("https://i.imgur.com/Wu42LVx.gif")
+                    .WithDescription(
+                        @"This command is used to buy penalties for Santa Word Game using Snow Coins.
+
+**Commands**
+`/word-guess buy-penalties <penalties>`");
+
+    private EmbedBuilder wordInstructionsyEmbed = new EmbedBuilder()
+                    .WithTitle("The /word-guess score Command.")
+                    .WithImageUrl("https://i.imgur.com/ZS6LQps.png")
+                    .WithThumbnailUrl("https://i.imgur.com/Wu42LVx.gif")
+                    .WithDescription(
+                        @"This command is used to get rules and instructions about Santa Word Guess game..
+
+**Commands**
+`/word-guess instructions`");
 }

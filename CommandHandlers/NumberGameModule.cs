@@ -124,7 +124,6 @@ public class NumberGameModule : InteractionModuleBase<SocketInteractionContext>
         Random a = new Random();
         List<int> randomList = new List<int>();
         int MyNumber = modal.enteredNumber;
-        Console.WriteLine($"Rat has entered {modal.enteredNumber}");
         int repeat = 0;
 
         void NewNumber()
@@ -231,7 +230,7 @@ public class NumberModal : IModal
 {
     public string Title => "Challenge";
 
-    [InputLabel("Enter a number for an opponenet to guess...")]
+    [InputLabel("Enter a double digit number for an opponenet to guess...")]
     [ModalTextInput("num", TextInputStyle.Short, maxLength: 2)]
     public int enteredNumber { get; set; }
 }

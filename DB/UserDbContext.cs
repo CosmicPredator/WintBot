@@ -12,4 +12,6 @@ public class UserDbContext : DbContext
     public DbSet<User> UserList {get; set;} = null!;  
 
     public DbSet<NumberGame> NumberGameList { get; set; } = null!;
+
+    public DbSet<WordGameModel> WordGameList {get; set; } = null!;
 }

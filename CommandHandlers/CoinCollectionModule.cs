@@ -16,11 +16,17 @@ public class CoinCollectionModule: InteractionModuleBase<SocketInteractionContex
     [SlashCommand("ping", "Pings the bot")]
     public async Task HandlePingCommand()
     {
-        int ping = Context.Client.Latency;
-        await RespondAsync($"Pong, `{ping.ToString()}ms`");
+        if (Context.User.Id == 793688107077468171)
+        {
+            int ping = Context.Client.Latency;
+            await RespondAsync($"Pong, `{ping.ToString()}ms`");
+        } else
+        {
+            await RespondAsync("It's a developer-only command...", ephemeral: true);
+        }
     }
 
-    [SlashCommand("daily", "Redeem your daily christmas gif coins...")]
+    [SlashCommand("daily", "Redeem your daily Christmas Snow Coins...")]
     public async Task HandleDaily()
     {
         User? user = _db.UserList.Where(x => x.UserId == Context.User.Id).FirstOrDefault();
@@ -32,8 +38,10 @@ public class CoinCollectionModule: InteractionModuleBase<SocketInteractionContex
             await _db.SaveChangesAsync();
             var embed = new EmbedBuilder()
                             .WithTitle("Woohoo...!")
-                            .WithDescription("200 Snow Coins was deposited into your account")
-                            .WithColor(Color.Green);
+                            .WithDescription("**200** Snow Coins was deposited into your account")
+                            .WithColor(Color.Green)
+                            .WithImageUrl("https://i.imgur.com/ZS6LQps.png")
+                            .WithThumbnailUrl("https://i.imgur.com/YYf7xDD.gif");
             await RespondAsync(embed: embed.Build());
         } else
         {
@@ -51,7 +59,8 @@ public class CoinCollectionModule: InteractionModuleBase<SocketInteractionContex
                                 )
                              )
                              .WithColor(Color.Red)
-                             .WithTitle("☃️ Umm, Wait...!");
+                             .WithTitle("☃️ Umm, Wait...!")
+                             .WithImageUrl("https://i.imgur.com/ZS6LQps.png");
                 await RespondAsync(embed: eb.Build());
             } else if (timeStatus == -1)
             {
@@ -61,8 +70,10 @@ public class CoinCollectionModule: InteractionModuleBase<SocketInteractionContex
                 await _db.SaveChangesAsync();
                 var eb = new EmbedBuilder()
                              .WithTitle("❄️ Success")
-                             .WithDescription("Added 200 Snow Coins to your wallet.")
-                             .WithColor(Color.DarkBlue);   
+                             .WithDescription("Added **200** Snow Coins to your wallet.")
+                             .WithColor(Color.DarkBlue)
+                             .WithImageUrl("https://i.imgur.com/ZS6LQps.png")
+                             .WithThumbnailUrl("https://i.imgur.com/YYf7xDD.gif");   
                 await RespondAsync(embed: eb.Build());
             }
         }
@@ -80,13 +91,15 @@ public class CoinCollectionModule: InteractionModuleBase<SocketInteractionContex
             var eb = new EmbedBuilder()
                          .WithTitle("☃️ Oops...!")
                          .WithColor(Color.DarkOrange)
-                         .WithDescription("Claim your daily Snow Coins to open a wallet");
+                         .WithDescription("Claim your daily Snow Coins to open a wallet")
+                         .WithImageUrl("https://i.imgur.com/ZS6LQps.png");
             await RespondAsync(embed: eb.Build());
         } else 
         {
             var eb = new EmbedBuilder()
                          .WithColor(Color.DarkOrange)
-                         .WithDescription($"❄️ Your balance is **{user.coins.ToString()}** Snow Coins.");
+                         .WithDescription($"❄️ Your balance is **{user.coins.ToString()}** Snow Coins.")
+                         .WithImageUrl("https://i.imgur.com/ZS6LQps.png");
             await RespondAsync(embed: eb.Build());
         }
 

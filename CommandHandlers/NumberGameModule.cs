@@ -43,8 +43,11 @@ public class NumberGameModule : InteractionModuleBase<SocketInteractionContext>
                 _db.NumberGameList.Add(newGame);
                 await _db.SaveChangesAsync();
                 var eb = new EmbedBuilder()
-                             .WithTitle("New Challenge")
-                             .WithDescription($"{Context.User.Mention} challenged you to the Number game for **{bet.ToString()}** Snow Coins");
+                             .WithTitle("❄️ New Challenge")
+                             .WithDescription($"{Context.User.Mention} challenged you to the Number game for **{bet.ToString()}** Snow Coins")
+                             .WithThumbnailUrl("https://i.imgur.com/oHNGdW1.gif")
+                             .WithColor(Color.Blue)
+                             .WithImageUrl("https://i.imgur.com/ZS6LQps.png");
                 var buttons = new ComponentBuilder()
                                   .WithButton("Agree", $"cmd_agree_{Context.User.Id}_{opponent.Id}", ButtonStyle.Success)
                                   .WithButton("Decline", $"cmd_decline_{Context.User.Id}_{opponent.Id}", ButtonStyle.Danger);
@@ -189,7 +192,9 @@ public class NumberGameModule : InteractionModuleBase<SocketInteractionContext>
                             .WithTitle("🥇 Hooray!, You Guessed..!")
                             .WithDescription($"**{game!.betAmount}** Snow Coins has been deposited to your wallet")
                             .WithFields(fields)
-                            .WithColor(Color.Green);
+                            .WithColor(Color.Green)
+                            .WithThumbnailUrl("https://i.imgur.com/t7J6krZ.gif")
+                            .WithImageUrl("https://i.imgur.com/ZS6LQps.png");
 
                 await RespondAsync(embed: eb.Build());
             }
@@ -204,7 +209,9 @@ public class NumberGameModule : InteractionModuleBase<SocketInteractionContext>
                 var ebn = new EmbedBuilder()
                              .WithTitle("Ouch...")
                              .WithDescription($"You got it wrong. {userObj.Mention} chose **{answer}**.")
-                             .WithColor(Color.Red);
+                             .WithColor(Color.Red)
+                             .WithImageUrl("https://i.imgur.com/ZS6LQps.png")
+                             .WithThumbnailUrl("https://i.imgur.com/wADiNP5.gif");
                 await RespondAsync(embed: ebn.Build());
             }
             if (game != null)

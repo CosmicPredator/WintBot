@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "lYsNv1LOIVsgvhYhtqmxtAwErCW5Lfk8tcmpzOnnAu6nfIjTAs0D7IL/Nd/jr3CxEiEiMChR0Y8AEPn7Ut2m1A==",
+  "dgSpecHash": "bhzGLEs1r9Fo4jbT/HTs1zVLiwWAqIqviI8uSxEDEqFSt1VHZWAU9omZDUYEUAvzS3V8c/ToBgS/8Bo+MkbmjA==",
   "success": true,
   "projectFilePath": "Y:\\SnowCord\\WintBot\\WintBot.csproj",
   "expectedPackageFiles": [
@@ -11,6 +11,7 @@
     "C:\\Users\\baran\\.nuget\\packages\\discord.net.rest\\3.8.1\\discord.net.rest.3.8.1.nupkg.sha512",
     "C:\\Users\\baran\\.nuget\\packages\\discord.net.webhook\\3.8.1\\discord.net.webhook.3.8.1.nupkg.sha512",
     "C:\\Users\\baran\\.nuget\\packages\\discord.net.websocket\\3.8.1\\discord.net.websocket.3.8.1.nupkg.sha512",
+    "C:\\Users\\baran\\.nuget\\packages\\dotenv.net\\3.1.2\\dotenv.net.3.1.2.nupkg.sha512",
     "C:\\Users\\baran\\.nuget\\packages\\microsoft.data.sqlite.core\\7.0.0\\microsoft.data.sqlite.core.7.0.0.nupkg.sha512",
     "C:\\Users\\baran\\.nuget\\packages\\microsoft.entityframeworkcore\\7.0.0\\microsoft.entityframeworkcore.7.0.0.nupkg.sha512",
     "C:\\Users\\baran\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\7.0.0\\microsoft.entityframeworkcore.abstractions.7.0.0.nupkg.sha512",

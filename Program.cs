@@ -25,15 +25,10 @@ public class Program
             LogLevel = LogSeverity.Info
         };
 
-        var host = Environment.GetEnvironmentVariable("DB_HOST");
-        var dbName = Environment.GetEnvironmentVariable("DB_NAME");
-        var userName = Environment.GetEnvironmentVariable("USER_NAME");
-        var passWord = Environment.GetEnvironmentVariable("DB_PASS");
-
         var collection = new ServiceCollection()
                                 .AddDbContext<UserDbContext>(
                                     x => x.UseNpgsql(
-                                        $"Host={host};Database={dbName};Username={userName};Password={passWord}"
+                                        $"{Environment.GetEnvironmentVariable("DB_URL")}"
                                     )
                                 )
                                 .AddSingleton(config)

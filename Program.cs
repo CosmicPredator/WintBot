@@ -25,11 +25,10 @@ public class Program
             LogLevel = LogSeverity.Info
         };
 
-        string connUrl = Environment.GetEnvironmentVariable("DB_URL");
-
         var collection = new ServiceCollection()
                                 .AddDbContext<UserDbContext>(
-                                    x => x.UseNpgsql(connUrl))
+                                    x => x.UseInMemoryDatabase("user_db")
+                                )
                                 .AddSingleton(config)
                                 .AddSingleton<DiscordSocketClient>()
                                 .AddSingleton(x => new InteractionService(x.GetRequiredService<DiscordSocketClient>()))
@@ -59,13 +58,13 @@ public class Program
 
         client.Ready += async () =>
         {
-            await sCommands.RegisterCommandsToGuildAsync(1041363391790465075);
+            await sCommands.RegisterCommandsGloballyAsync();
         };
 
         client.MessageReceived += HandleWordAsync;
  
         // In dev environment
-        //await client.LoginAsync(TokenType.Bot, "<TOKEN-HERE>");
+        // await client.LoginAsync(TokenType.Bot, "<TOKEN_HERE>");
 
         //In prod environment
         await client.LoginAsync(TokenType.Bot, Environment.GetEnvironmentVariable("TOKEN"));

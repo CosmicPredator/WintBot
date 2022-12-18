@@ -5,6 +5,14 @@ using WeCantSpell.Hunspell;
 
 namespace WintBot;
 
+/// <summary>
+/// The Class which constitutes the Commands required for Sants Word Guess game.
+/// like /word-guess register etc.,
+/// This class is scoped to the assembly.
+/// The DB servcies are injected to this class.
+/// </summary>
+
+
 [Group("word-guess", "Set of commands used for Santa Word Guess")]
 public class WordGameModule : InteractionModuleBase<SocketInteractionContext>
 {
@@ -35,6 +43,7 @@ public class WordGameModule : InteractionModuleBase<SocketInteractionContext>
 ```
 ";
 
+    // register a specific channel to play word game.
     [SlashCommand("register", "Register a channel for Santa Word Guess")]
     public async Task HandleRegisterCommand(SocketGuildChannel channel)
     {
@@ -87,6 +96,7 @@ public class WordGameModule : InteractionModuleBase<SocketInteractionContext>
         }
     }
 
+    // Handle score command
     [SlashCommand("score", "Gets the current high score of the Santa Word Guess")]
     public async Task HandleScore()
     {
@@ -125,6 +135,7 @@ public class WordGameModule : InteractionModuleBase<SocketInteractionContext>
         }
     }
 
+    // Handle reset-score command
     [SlashCommand("reset-score", "Resets the previous scores and High Scores")]
     public async Task HandleResetCommand()
     {
@@ -138,12 +149,14 @@ public class WordGameModule : InteractionModuleBase<SocketInteractionContext>
         }
     }
 
+    // Handle instructions connamd
     [SlashCommand("instructions", "Instructions on how to play the Santa Word Guess")]
     public async Task HandleInstructionCommand()
     {
         await RespondAsync(ins, ephemeral: true);
     }
 
+    // Hande buy-penalties command
     [SlashCommand("buy-penalties", "Buy penalties for Santa Word Guess using your Snow Coins.")]
     public async Task HandleAddPenalties(int penalties)
     {

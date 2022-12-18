@@ -5,14 +5,27 @@ using Microsoft.EntityFrameworkCore;
 
 namespace WintBot;
 
+/// <summary>
+/// The Class which constitutes the Snow Coin Collecting events and commands
+/// like /daily, /mywallet etc.,
+/// This class is scoped to the assembly.
+/// The DB servcies are injected to this class.
+/// This class constitutes the follwowing commands,
+/// > /ping (dev only)
+/// > /daily
+/// > /mywallet
+/// </summary>
+
+
 public class CoinCollectionModule: InteractionModuleBase<SocketInteractionContext>
 {
-
     private readonly UserDbContext _db;
 
+    // DB Context is injected
     public CoinCollectionModule(UserDbContext db) => _db = db;
     
 
+    // Handling of /ping command.
     [SlashCommand("ping", "Pings the bot")]
     public async Task HandlePingCommand()
     {
@@ -26,6 +39,7 @@ public class CoinCollectionModule: InteractionModuleBase<SocketInteractionContex
         }
     }
 
+    // Handling of /daily command
     [SlashCommand("daily", "Redeem your daily Christmas Snow Coins...")]
     public async Task HandleDaily()
     {
@@ -79,6 +93,7 @@ public class CoinCollectionModule: InteractionModuleBase<SocketInteractionContex
         }
     }
 
+    // handling ot /mywallet command
     [SlashCommand("mywallet", "Check your availabe Snow Coins")]
     public async Task HandleMyWalletCommand()
     {

@@ -4,8 +4,15 @@ using Discord.WebSocket;
 
 namespace WintBot;
 
+/// <summary>
+/// The Class which constitutes the Help commands
+/// like /help daily, /help challenge etc.,
+/// </summary>
+
+
 public class HelpCommandsClass: InteractionModuleBase<SocketInteractionContext>
 {
+    // The enums are casted to choice objects
     public enum Choices
     {
         general,

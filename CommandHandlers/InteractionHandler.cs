@@ -5,6 +5,11 @@ using System.Reflection;
 
 namespace WintBot;
 
+/// <summary>
+/// The main Handler Class where the scoped
+/// Module classes are handled.
+/// </summary>
+
 public class InteractionHandler
 {
     private readonly DiscordSocketClient _client;
@@ -20,6 +25,7 @@ public class InteractionHandler
 
     public async Task InitializeAsync()
     {
+        // Gets all the InteractionModule classes from the assembly.
         await _commands.AddModulesAsync(Assembly.GetEntryAssembly(), _services);
         _client.InteractionCreated += HandleInteraction;
     }

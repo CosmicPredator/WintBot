@@ -4,12 +4,22 @@ using Discord.WebSocket;
 
 namespace WintBot;
 
+/// <summary>
+/// The Class which constitutes the Commands required for Number Game
+/// like /challenge etc.,
+/// This class is scoped to the assembly.
+/// The DB servcies are injected to this class.
+/// </summary>
+
+
 public class NumberGameModule : InteractionModuleBase<SocketInteractionContext>
 {
     private readonly UserDbContext _db;
 
+    // The DB Context is injected
     public NumberGameModule(UserDbContext db) => _db = db;
 
+    // Handler for /challenge command
     [SlashCommand("challenge", "Challenge an user to play the Snow Guess game")]
     public async Task HandleChallengeCommand(SocketGuildUser opponent, int bet)
     {
@@ -226,11 +236,12 @@ public class NumberGameModule : InteractionModuleBase<SocketInteractionContext>
     }
 }
 
+// The modal class for getting user input.
 public class NumberModal : IModal
 {
     public string Title => "Challenge";
 
-    [InputLabel("Enter a double digit number for an opponenet to guess...")]
+    [InputLabel("Enter a number for an opponenet to guess...")]
     [ModalTextInput("num", TextInputStyle.Short, maxLength: 2)]
     public int enteredNumber { get; set; }
 }

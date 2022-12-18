@@ -65,10 +65,10 @@ public class Program
         client.MessageReceived += HandleWordAsync;
  
         // In dev environment
-        await client.LoginAsync(TokenType.Bot, "MTA1MTU1Nzc5MDY3OTg0Njk5Mg.GIwYJ4.95SwWmdyIMk82dM0uQC5IkMRUefVOmyjKbmtJc");
+        await client.LoginAsync(TokenType.Bot, "<TOKEN_HERE>");
 
         //In prod environment
-        //await client.LoginAsync(TokenType.Bot, Environment.GetEnvironmentVariable("TOKEN"));
+        await client.LoginAsync(TokenType.Bot, Environment.GetEnvironmentVariable("TOKEN"));
         await client.StartAsync();
 
         await client.SetGameAsync("People enjoying Christmas...!", null, ActivityType.Watching);

@@ -107,3 +107,5 @@ Y:\SnowCord\WintBot\obj\Debug\net6.0\WintBot.genruntimeconfig.cache
 Y:\SnowCord\WintBot\obj\Debug\net6.0\ref\WintBot.dll
 Y:\SnowCord\WintBot\bin\Debug\net6.0\WeCantSpell.Hunspell.dll
 Y:\SnowCord\WintBot\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.InMemory.dll
+Y:\SnowCord\WintBot\bin\Debug\net6.0\en_US.aff
+Y:\SnowCord\WintBot\bin\Debug\net6.0\en_US.dic

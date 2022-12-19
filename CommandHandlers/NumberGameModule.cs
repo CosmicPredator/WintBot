@@ -107,8 +107,7 @@ public class NumberGameModule : InteractionModuleBase<SocketInteractionContext>
                     var btn = new ComponentBuilder()
                             .WithButton("Click Here", $"cmd_open_num_modal_{user}_{opponent}", ButtonStyle.Primary);
                     await RespondAsync($"{userObject.Mention}, click here to enter your number... \n Be aware that you have **only one chance** to submit your number.", 
-                        components: btn.Build(), 
-                        ephemeral:true
+                        components: btn.Build()
                     );
                     var msg = (SocketMessageComponent)Context.Interaction;
                     await msg.Message.DeleteAsync();

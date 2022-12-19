@@ -30,7 +30,7 @@ public class MiscComponentModule: InteractionModuleBase<SocketInteractionContext
             }
             else
             {
-                user!.coins -= Convert.ToInt32(penalties);
+                user!.coins -= Convert.ToInt32(penalties) * 50;
                 wordGameobj.penalties += Convert.ToInt32(penalties);
                 await _db.SaveChangesAsync();
                 var emb = new EmbedBuilder()

@@ -183,7 +183,7 @@ public class WordGameModule : InteractionModuleBase<SocketInteractionContext>
                 var eb = new EmbedBuilder()
                              .WithTitle("Are you sure?")
                              .WithDescription(
-                                $"{penalties} penalties x 20 Coins = **{penalties * 20}** Snow Coins will be debited from your wallet."
+                                $"{penalties} penalties x 50 Coins = **{penalties * 50}** Snow Coins will be debited from your wallet."
                              )
                              .WithColor(Color.DarkTeal)
                              .WithThumbnailUrl("https://i.imgur.com/TW9fT2t.gif")

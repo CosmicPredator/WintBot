@@ -175,7 +175,7 @@ public class WordGameModule : InteractionModuleBase<SocketInteractionContext>
         }
         else
         {
-            if (user.coins >= penalties * 20)
+            if (user.coins >= penalties * 50)
             {
                 var btns = new ComponentBuilder()
                                .WithButton("Yeah, Buy it", $"confirm_yes_{penalties}", ButtonStyle.Success)

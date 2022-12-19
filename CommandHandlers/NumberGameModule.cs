@@ -97,7 +97,7 @@ public class NumberGameModule : InteractionModuleBase<SocketInteractionContext>
             {
                 await RespondAsync("Wait for the opponent to accept the challenge.", ephemeral: true);
             }
-            else if (Context.User.Id == Convert.ToUInt64(opponent))
+            else if (Context.User.Id == Convert.ToUInt64(opponent)) 
             {
                 var opponentObj = await Context.Channel.GetUserAsync(Convert.ToUInt64(opponent));
                 var opponentDailyObj = _db.UserList.Where(x => x.Id == Convert.ToUInt64(opponent)).FirstOrDefault();
@@ -106,7 +106,12 @@ public class NumberGameModule : InteractionModuleBase<SocketInteractionContext>
                     var userObject = await Context.Channel.GetUserAsync(Convert.ToUInt64(user));
                     var btn = new ComponentBuilder()
                             .WithButton("Click Here", $"cmd_open_num_modal_{user}_{opponent}", ButtonStyle.Primary);
-                    await RespondAsync($"{userObject.Mention}, click here to enter your number...", components: btn.Build());
+                    await RespondAsync($"{userObject.Mention}, click here to enter your number... \n Be aware that you have **only one chance** to submit your number.", 
+                        components: btn.Build(), 
+                        ephemeral:true
+                    );
+                    var msg = (SocketMessageComponent)Context.Interaction;
+                    await msg.Message.DeleteAsync();
                 } else 
                 {
                     await RespondAsync($"{opponentObj.Mention}, it seems you didn't have enough coins to bet with...");
@@ -121,6 +126,16 @@ public class NumberGameModule : InteractionModuleBase<SocketInteractionContext>
         if (Context.User.Id == Convert.ToUInt64(user))
         {
             await RespondWithModalAsync<NumberModal>($"num_modal_{user}_{opponent}");
+            if (Context.Interaction.HasResponded)
+            {
+                await Context.Interaction.ModifyOriginalResponseAsync(
+                    x => 
+                    {
+                        x.Components = new ComponentBuilder().Build();
+                        x.Content = "You have used your chance.";
+                    }
+                );
+            }
         }
         else
         {
@@ -206,6 +221,8 @@ public class NumberGameModule : InteractionModuleBase<SocketInteractionContext>
                             .WithImageUrl("https://i.imgur.com/ZS6LQps.png");
 
                 await RespondAsync(embed: eb.Build());
+                var msg = (SocketMessageComponent)Context.Interaction;
+                await msg.Message.DeleteAsync();
             }
             else
             {
@@ -222,6 +239,8 @@ public class NumberGameModule : InteractionModuleBase<SocketInteractionContext>
                              .WithImageUrl("https://i.imgur.com/ZS6LQps.png")
                              .WithThumbnailUrl("https://i.imgur.com/wADiNP5.gif");
                 await RespondAsync(embed: ebn.Build());
+                var msg = (SocketMessageComponent)Context.Interaction;
+                await msg.Message.DeleteAsync();
             }
             if (game != null)
             {

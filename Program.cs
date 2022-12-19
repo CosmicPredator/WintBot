@@ -78,7 +78,6 @@ public class Program
         client.Ready += async () =>
         {
             await sCommands.RegisterCommandsGloballyAsync();
-            Console.WriteLine(System.Environment.CurrentDirectory.ToString());
         };
 
         // Not a recommended way, but the best optimized wat to handle message.
@@ -86,7 +85,7 @@ public class Program
         client.MessageReceived += HandleWordAsync;
  
         // In dev environment
-        await client.LoginAsync(TokenType.Bot, "<TOKEN_HERE>");
+        //await client.LoginAsync(TokenType.Bot, "<TOKEN_HERE>");
 
         // In prod environment
         await client.LoginAsync(TokenType.Bot, Environment.GetEnvironmentVariable("TOKEN"));

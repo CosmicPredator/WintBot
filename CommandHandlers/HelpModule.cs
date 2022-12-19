@@ -77,7 +77,7 @@ I also has a number guessing game, to challenge your server members a.k.a friend
 
 Use `/help` and select a command from the choice to know about it.
 
-U can find my Source Code in [GitHub](https://discord.gg/ggZn8PaQed).
+U can find my Source Code in [GitHub](https://github.com/CosmicPredator/WintBot).
 
 **❄️  Merry Christmas  ❄️**
 ");
@@ -143,7 +143,7 @@ One cannot start a game with insufficient Snow Coins.
 `/word-guess score`");
 
     private EmbedBuilder wordGuessResetEmbed = new EmbedBuilder()
-                    .WithTitle("The /word-guess score Command.")
+                    .WithTitle("The /word-guess reset-score Command.")
                     .WithImageUrl("https://i.imgur.com/ZS6LQps.png")
                     .WithThumbnailUrl("https://i.imgur.com/Wu42LVx.gif")
                     .WithDescription(
@@ -153,7 +153,7 @@ One cannot start a game with insufficient Snow Coins.
 `/word-guess reset-score`");
 
     private EmbedBuilder wordGuessRegisterEmbed = new EmbedBuilder()
-                    .WithTitle("The /word-guess score Command.")
+                    .WithTitle("The /word-guess register Command.")
                     .WithImageUrl("https://i.imgur.com/ZS6LQps.png")
                     .WithThumbnailUrl("https://i.imgur.com/Wu42LVx.gif")
                     .WithDescription(
@@ -164,7 +164,7 @@ One cannot start a game with insufficient Snow Coins.
 `/word-guess register <channel>`");
 
     private EmbedBuilder wordGuessBuyEmbed = new EmbedBuilder()
-                    .WithTitle("The /word-guess score Command.")
+                    .WithTitle("The /word-guess buy-penalties Command.")
                     .WithImageUrl("https://i.imgur.com/ZS6LQps.png")
                     .WithThumbnailUrl("https://i.imgur.com/Wu42LVx.gif")
                     .WithDescription(
@@ -174,7 +174,7 @@ One cannot start a game with insufficient Snow Coins.
 `/word-guess buy-penalties <penalties>`");
 
     private EmbedBuilder wordInstructionsyEmbed = new EmbedBuilder()
-                    .WithTitle("The /word-guess score Command.")
+                    .WithTitle("The /word-guess instructions Command.")
                     .WithImageUrl("https://i.imgur.com/ZS6LQps.png")
                     .WithThumbnailUrl("https://i.imgur.com/Wu42LVx.gif")
                     .WithDescription(

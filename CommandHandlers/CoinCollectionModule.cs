@@ -43,12 +43,19 @@ public class CoinCollectionModule: InteractionModuleBase<SocketInteractionContex
     [SlashCommand("daily", "Redeem your daily Christmas Snow Coins...")]
     public async Task HandleDaily()
     {
-        User? user = _db.UserList.Where(x => x.UserId == Context.User.Id).FirstOrDefault();
+        User? user = _db.UserList.Where(
+            x => x.UserId == Context.User.Id &&
+                x.GuildId == Context.Guild.Id
+        ).FirstOrDefault();
         DateTime currTime = DateTime.Now;
         if (user == null)
         {
             DateTime changedDate = currTime.AddHours(1.0);
-            _db.Add(new User() {UserId = Context.User.Id, coins = 200, NextClaimTime = changedDate});
+            _db.Add(new User() {
+                UserId = Context.User.Id, coins = 200, 
+                NextClaimTime = changedDate,
+                GuildId = Context.Guild.Id
+            });
             await _db.SaveChangesAsync();
             var embed = new EmbedBuilder()
                             .WithTitle("Woohoo...!")
@@ -63,14 +70,10 @@ public class CoinCollectionModule: InteractionModuleBase<SocketInteractionContex
             if (timeStatus == 1 || timeStatus == 0)
             {
                 TimeSpan timeDiff = user.NextClaimTime.Subtract(DateTime.Now);
+                long unix = ((DateTimeOffset)user.NextClaimTime).ToUnixTimeSeconds();
                 var eb = new EmbedBuilder()
                              .WithDescription(
-                                String.Format(
-                                    "❄️ Your next Snow Coins claim will be availabe in {0:00}:{1:00}:{2:00} !",
-                                    timeDiff.Hours,
-                                    timeDiff.Minutes,
-                                    timeDiff.Seconds
-                                )
+                                $"Your next Snow Coins claim will be availabe in <t:{unix}:R>!"
                              )
                              .WithColor(Color.Red)
                              .WithTitle("☃️ Umm, Wait...!")
@@ -99,7 +102,8 @@ public class CoinCollectionModule: InteractionModuleBase<SocketInteractionContex
     {
         User? user = _db.UserList.Where(
             x => x.UserId == Context.User.Id &&
-                 x.coins != null
+                 x.coins != null &&
+                 x.GuildId == Context.Guild.Id
         ).FirstOrDefault();
         if (user == null)
         {

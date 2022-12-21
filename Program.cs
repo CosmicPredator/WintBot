@@ -85,7 +85,7 @@ public class Program
         client.MessageReceived += HandleWordAsync;
  
         // In dev environment
-        //await client.LoginAsync(TokenType.Bot, "<TOKEN_HERE>");
+        // await client.LoginAsync(TokenType.Bot, "<TOKEN_HERE>");
 
         // In prod environment
         await client.LoginAsync(TokenType.Bot, Environment.GetEnvironmentVariable("TOKEN"));

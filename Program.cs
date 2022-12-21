@@ -203,6 +203,7 @@ public class Program
                     }
                     else
                     {
+                        // if message is wrong, reply with "X" symbol.
                         await message.Channel.SendMessageAsync($"**'{message.Content}'** is not a valid english word...!");
                         await message.AddReactionAsync(Emoji.Parse("❌"));
                     }

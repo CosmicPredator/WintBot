@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "Y:\\SnowCord\\WintBot\\WintBot.csproj": {}
+    "E:\\Aravind\\WintBot\\WintBot.csproj": {}
   },
   "projects": {
-    "Y:\\SnowCord\\WintBot\\WintBot.csproj": {
+    "E:\\Aravind\\WintBot\\WintBot.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "Y:\\SnowCord\\WintBot\\WintBot.csproj",
+        "projectUniqueName": "E:\\Aravind\\WintBot\\WintBot.csproj",
         "projectName": "WintBot",
-        "projectPath": "Y:\\SnowCord\\WintBot\\WintBot.csproj",
+        "projectPath": "E:\\Aravind\\WintBot\\WintBot.csproj",
         "packagesPath": "C:\\Users\\baran\\.nuget\\packages\\",
-        "outputPath": "Y:\\SnowCord\\WintBot\\obj\\",
+        "outputPath": "E:\\Aravind\\WintBot\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "X:\\Visual Studio\\SDKs\\NuGetPackages"
+          "D:\\Visual Studio\\SDKs\\NuGetPackages"
         ],
         "configFilePaths": [
           "C:\\Users\\baran\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -26,7 +26,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -74,7 +73,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     }

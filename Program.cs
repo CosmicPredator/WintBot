@@ -29,7 +29,7 @@ public class Program
         // for Santa Word Guess game.
 
         // Create the config for the bot.
-        DiscordSocketConfig config = new DiscordSocketConfig()
+        DiscordSocketConfig config = new()
         {
             GatewayIntents = GatewayIntents.MessageContent | GatewayIntents.AllUnprivileged,
             LogGatewayIntentWarnings = false,
@@ -129,7 +129,7 @@ public class Program
                     {
                         if (wordHistory.Count == 0)
                         {
-                            char lastLetter = message.Content[message.Content.Length - 1];
+                            char lastLetter = message.Content[^1];
                             wordHistory.Add(
                                         new WordPlayer()
                                         {
@@ -147,9 +147,9 @@ public class Program
                             WordPlayer? prevMessage = wordHistory.Last();
                             if (message.Author.Id != prevMessage.UserId)
                             {
-                                char lastLetter = message.Content[message.Content.Length - 1];
+                                char lastLetter = message.Content[^1];
                                 char firstLetter = message.Content[0];
-                                if (Char.ToLower(firstLetter) == Char.ToLower((char)prevMessage.LastWord!))
+                                if (char.ToLower(firstLetter) == char.ToLower((char)prevMessage.LastWord!))
                                 {
                                     wordHistory.Add(
                                         new WordPlayer()
@@ -181,7 +181,7 @@ public class Program
                                     var embed = new EmbedBuilder()
                                                     .WithColor(Color.Orange)
                                                     .WithTitle("Oops...!")
-                                                    .WithDescription("That was a wrong word. The game starts again...!")
+                                                    .WithDescription($"**'{message.Content}'** didn't start with the letter **'{prevMessage.LastWord!}'**. The game starts again...!")
                                                     .WithThumbnailUrl("https://i.imgur.com/wADiNP5.gif");
                                     await message.Channel.SendMessageAsync(embed: embed.Build());
                                 }
@@ -195,7 +195,7 @@ public class Program
                                 var embed = new EmbedBuilder()
                                                 .WithColor(Color.Orange)
                                                 .WithTitle("Alas...!")
-                                                .WithDescription("Same user message again. Start the game from start")
+                                                .WithDescription("Same user should not play again. Restart the game from start.")
                                                 .WithThumbnailUrl("https://i.imgur.com/wADiNP5.gif");
                                 await message.Channel.SendMessageAsync(embed: embed.Build());
                             }
@@ -203,8 +203,8 @@ public class Program
                     }
                     else
                     {
-                        await message.Channel.SendMessageAsync("That's not a valid english word...!");
-                        await message.DeleteAsync();
+                        await message.Channel.SendMessageAsync($"**'{message.Content}'** is not a valid english word...!");
+                        await message.AddReactionAsync(Emoji.Parse("❌"));
                     }
                 }
                 else
@@ -215,7 +215,7 @@ public class Program
                         await _db.SaveChangesAsync();
                         var eb = new EmbedBuilder()
                                  .WithColor(Color.DarkRed)
-                                 .WithDescription($"This word was said previously, try typing a new word. \n\n**{guildExists.penalties+1}/3** penalties left.")
+                                 .WithDescription(@$"**'{message.Content}'** was said previously, try typing a new word. \n\n**{guildExists.penalties+1}/3** penalties left.")
                                  .WithTitle("Penalty...!");
                         await message.Channel.SendMessageAsync(embed: eb.Build());
                     }

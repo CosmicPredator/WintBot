@@ -216,7 +216,7 @@ public class Program
                         await _db.SaveChangesAsync();
                         var eb = new EmbedBuilder()
                                  .WithColor(Color.DarkRed)
-                                 .WithDescription(@$"**'{message.Content}'** was said previously, try typing a new word. \n\n**{guildExists.penalties+1}/3** penalties left.")
+                                 .WithDescription($"**'{message.Content}'** was said previously, try typing a new word. \n\n**{guildExists.penalties+1}/3** penalties left.")
                                  .WithTitle("Penalty...!");
                         await message.Channel.SendMessageAsync(embed: eb.Build());
                     }
